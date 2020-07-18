@@ -23,9 +23,9 @@ arm_list = []
 leg_list = []
 tiddy_list = []
 fs_list = []
-get_Pics()
 
-async def get_Pics():
+
+def get_Pics():
     # Auto-iterate through all files in the root folder.
     ab_file_list = drive.ListFile({'q': "'1Hh_4YWVkNVaprArjRIPrHA8KS_lSVbuD' in parents and trashed=false"}).GetList()
     for file1 in ab_file_list:
@@ -38,7 +38,6 @@ async def get_Pics():
         urlValue = 'https://drive.google.com/uc?id=' + file1['id']
         if urlValue not in fs_list:
             fs_list.append(urlValue)
-
 
 @bot.command(name='EVIL', help='displays the evil')
 async def evil(ctx):
@@ -62,6 +61,8 @@ async def reloadImages(ctx):
 
 @bot.command(name='fs', help='display a random figure skater pic')
 async def fsPic(ctx):
+    if not fs_list:
+        get_Pics()
     response = random.choice(fs_list)
     await ctx.send(response)
 
