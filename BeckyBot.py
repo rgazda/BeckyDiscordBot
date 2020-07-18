@@ -23,6 +23,7 @@ arm_list = []
 leg_list = []
 tiddy_list = []
 fs_list = []
+get_Pics()
 
 async def get_Pics():
     # Auto-iterate through all files in the root folder.
