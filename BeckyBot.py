@@ -1,6 +1,7 @@
 # bot.py
 import os
 import random
+import datetime
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
@@ -67,6 +68,17 @@ async def hiBecky(ctx):
     greetings = ['Whaddup bitch', 'sup br0 (is da ceilin)', 'Leave me aL0ne', 'ey', 'swiggity swooty im comin for dat b00ty', 'hey cutie ;3', 'u come here oft3n?', 'hi friendo', 'y0']
     response = random.choice(greetings)
     await ctx.send(response)
+
+@bot.command(name='jk', help='have googie time uwu')
+async def jkTime(ctx):
+    current_time = datetime.datetime.now()
+    current_hour = current_time.hour
+    if current_hour > -1 and current_hour < 12:
+        await ctx.send('koo morning uwu')
+    elif current_hour > 11 and current_hour < 19:
+        await ctx.send('googie day OwO')
+    else:
+        await ctx.send('koo nite ~_~')
 
 @bot.command(name='ping', help='test your connection/test becky\'s connection')
 async def ping(ctx):
