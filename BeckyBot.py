@@ -2,6 +2,7 @@
 import os
 import random
 import datetime
+from git import Repo
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
@@ -24,6 +25,10 @@ arm_list = []
 leg_list = []
 tiddy_list = []
 fs_list = []
+
+#Git Repo link 
+repo = Repo("/Users/caitl/Documents/pythonFiles/DiscordBot/BeckyDiscordBot/BeckyDiscordBot")
+assert not repo.bare
 
 
 def get_Pics():
@@ -88,6 +93,11 @@ async def ping(ctx):
 async def reloadImages(ctx):
     get_Pics()
     await ctx.send('I did the thing, the thing is done OwO')
+
+@bot.command(name='updates', help='get most recent commit message from becky\'s git repo')
+async def getLatestCommit(ctx):
+    commit = repo.head.commit
+    await ctx.send('Latest update: ' + commit.message)
 
 @bot.command(name='fs', help='display a random figure skater pic')
 async def fsPic(ctx):
