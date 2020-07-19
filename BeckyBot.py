@@ -39,6 +39,24 @@ def get_Pics():
         if urlValue not in fs_list:
             fs_list.append(urlValue)
 
+    arm_file_list = drive.ListFile({'q': "'1zVEJC3SJKTvWioZ_EL5yQ57UnbYJYQDQ' in parents and trashed=false"}).GetList()
+    for file1 in arm_file_list:
+        urlValue = 'https://drive.google.com/uc?id=' + file1['id']
+        if urlValue not in arm_list:
+            arm_list.append(urlValue)
+
+    leg_file_list = drive.ListFile({'q': "'1bHNWPc_BWjgyq6aKvUzSjRy71ICC9HdW' in parents and trashed=false"}).GetList()
+    for file1 in leg_file_list:
+        urlValue = 'https://drive.google.com/uc?id=' + file1['id']
+        if urlValue not in leg_list:
+            leg_list.append(urlValue)
+
+    tiddy_file_list = drive.ListFile({'q': "'16qDAwpUMnOIDXSQzsGDRShWKHur09jRP' in parents and trashed=false"}).GetList()
+    for file1 in tiddy_file_list:
+        urlValue = 'https://drive.google.com/uc?id=' + file1['id']
+        if urlValue not in tiddy_list:
+            tiddy_list.append(urlValue)
+
 @bot.command(name='EVIL', help='displays the evil')
 async def evil(ctx):
     lemonSeven = '🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋⁷'    
@@ -63,8 +81,51 @@ async def reloadImages(ctx):
 async def fsPic(ctx):
     if not fs_list:
         get_Pics()
-    response = random.choice(fs_list)
-    await ctx.send(response)
+    if not fs_list:
+        await ctx.send("Fig Skater image repo is empty")
+    else:
+        response = random.choice(fs_list)
+        await ctx.send(response)
+
+@bot.command(name='ab', help='display a random ab pic...')
+async def abPic(ctx):
+    if not ab_list:
+        get_Pics()
+    if not ab_list:
+        await ctx.send("ab image repo is empty")
+    else:
+        response = random.choice(ab_list)
+        await ctx.send(response)
+
+@bot.command(name='arm', help='display a random arm pic...')
+async def armPic(ctx):
+    if not arm_list:
+        get_Pics()
+    if not arm_list:
+        await ctx.send("arm image repo is empty")
+    else:
+        response = random.choice(arm_list)
+        await ctx.send(response)
+
+@bot.command(name='leg', help='display a random leg pic...')
+async def legPic(ctx):
+    if not leg_list:
+        get_Pics()
+    if not leg_list:
+        await ctx.send("leg image repo is empty")
+    else:
+        response = random.choice(leg_list)
+        await ctx.send(response)
+
+@bot.command(name='tiddy', help='display a random tiddy pic...')
+async def tiddyPic(ctx):
+    if not tiddy_list:
+        get_Pics()
+    if not tiddy_list:
+        await ctx.send("tiddy image repo is empty")
+    else:
+        response = random.choice(tiddy_list)
+        await ctx.send(response)
 
 @bot.command(name='bts', help='give me the bts boi')
 async def bts_boi(ctx):
